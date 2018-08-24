@@ -1,0 +1,23 @@
+20:57:34 **** Incremental Build of configuration Debug for project MicroSD ****
+make all 
+Building file: ../Src/main.c
+Invoking: MCU GCC Compiler
+C:\GitHub\toasty\Examples\MicroSD\Debug
+arm-none-eabi-gcc -mcpu=cortex-m7 -mthumb -mfloat-abi=hard -mfpu=fpv5-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32H743xx -I"C:/GitHub/toasty/Examples/MicroSD/Inc" -I"C:/GitHub/toasty/Examples/MicroSD/Drivers/STM32H7xx_HAL_Driver/Inc" -I"C:/GitHub/toasty/Examples/MicroSD/Drivers/STM32H7xx_HAL_Driver/Inc/Legacy" -I"C:/GitHub/toasty/Examples/MicroSD/Drivers/CMSIS/Device/ST/STM32H7xx/Include" -I"C:/GitHub/toasty/Examples/MicroSD/Drivers/CMSIS/Include" -I"C:/GitHub/toasty/Examples/MicroSD/Middlewares/ST/STM32_USB_Device_Library/Core/Inc" -I"C:/GitHub/toasty/Examples/MicroSD/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc" -I"C:/GitHub/toasty/Examples/MicroSD/Middlewares/Third_Party/FatFs/src"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/main.d" -MT"Src/main.o" -o "Src/main.o" "../Src/main.c"
+Finished building: ../Src/main.c
+ 
+Building target: MicroSD.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m7 -mthumb -mfloat-abi=hard -mfpu=fpv5-d16 -specs=nosys.specs -specs=nano.specs -T"../STM32H743VITx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "MicroSD.elf" @"objects.list"   -lm
+Finished building target: MicroSD.elf
+ 
+make --no-print-directory post-build
+Generating hex and Printing size information:
+arm-none-eabi-objcopy -O ihex "MicroSD.elf" "MicroSD.hex"
+arm-none-eabi-size "MicroSD.elf"
+   text	   data	    bss	    dec	    hex	filename
+  29144	    472	   9088	  38704	   9730	MicroSD.elf
+ 
+
+20:57:36 Build Finished (took 2s.82ms)
+

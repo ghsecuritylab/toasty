@@ -53,6 +53,7 @@
 
 /* USER CODE BEGIN Includes */
 #include "usbd_cdc_if.h"
+#include <stdarg.h>
 
 /* USER CODE END Includes */
 
@@ -74,6 +75,26 @@ static void MX_GPIO_Init(void);
 
 /* USER CODE BEGIN 0 */
 uint8_t buffer[] = { 0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x21, 0x0D, 0x0A };
+
+#undef printf
+#define printf 	debug_print
+
+void vprint(const char *fmt, va_list argp)
+{
+    char string[200];
+    if(0 < vsprintf(string,fmt,argp)) // build string
+    {
+    	CDC_Transmit_FS((uint8_t *)&string[0], strlen(string));
+    }
+}
+
+void debug_print(const char *fmt, ...) // custom printf() function
+{
+    va_list argp;
+    va_start(argp, fmt);
+    vprint(fmt, argp);
+    va_end(argp);
+}
 
 /* USER CODE END 0 */
 
@@ -118,8 +139,7 @@ int main(void)
 	  HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_14);
 	  HAL_Delay(100);
 
-	  // Send the Hello! message
-	  CDC_Transmit_FS(buffer, 8);
+	  printf("Hello\r\n");
 
   /* USER CODE END WHILE */
 
